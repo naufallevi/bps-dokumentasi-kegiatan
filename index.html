@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dokumentasi Kegiatan — BPS Kota Pekalongan</title>
+    <meta
+      name="description"
+      content="Portal dokumentasi digital kegiatan BPS Kota Pekalongan. Temukan arsip, dokumentasi, dan informasi kegiatan dalam satu tempat."
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="bg-surface border-b border-border">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div id="header-content" class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"></div>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="relative overflow-hidden bg-surface">
+      <div class="absolute inset-0 hero-dots" aria-hidden="true"></div>
+      <div class="relative max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+        <p class="text-xs font-bold tracking-[0.2em] text-orange-bps uppercase mb-3">PORTAL DOKUMENTASI DIGITAL</p>
+        <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-navy leading-tight max-w-2xl">
+          Dokumentasi Kegiatan
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary mt-3 max-w-xl leading-relaxed">
+          Temukan arsip, dokumentasi, dan informasi kegiatan BPS Kota Pekalongan dalam satu tempat.
+        </p>
+        <div class="mt-6 w-16 h-1 bg-orange-bps rounded-full" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ===== SUMMARY ===== -->
+    <section class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 -mt-4 sm:-mt-6 relative z-10">
+      <div id="summary-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"></div>
+    </section>
+
+    <!-- ===== DOCUMENTATION ===== -->
+    <main class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="mb-6 sm:mb-8">
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-navy">Jelajahi Dokumentasi</h2>
+        <p class="text-sm sm:text-base text-text-secondary mt-1.5 max-w-lg">
+          Pilih kategori kegiatan untuk menemukan arsip dan dokumentasi yang dibutuhkan.
+        </p>
+      </div>
+
+      <!-- Search & Controls -->
+      <div class="mb-5">
+        <div class="relative max-w-lg">
+          <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">
+            <i data-lucide="search" class="w-4 h-4" aria-hidden="true"></i>
+          </div>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Cari kegiatan atau kategori..."
+            class="w-full min-h-[48px] pl-10 pr-10 rounded-xl border border-border bg-surface text-sm text-text-primary placeholder:text-text-secondary/60 focus:border-focus focus:ring-2 focus:ring-focus/20 outline-none transition-all"
+            aria-label="Cari kegiatan atau kategori"
+          />
+          <button
+            type="button"
+            id="search-clear"
+            class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg items-center justify-center text-text-secondary hover:text-navy hover:bg-bg-main transition-colors"
+            aria-label="Hapus pencarian"
+          >
+            <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div id="search-status" class="text-sm text-text-secondary mt-3 min-h-[1.25rem]" aria-live="polite"></div>
+      </div>
+
+      <div class="flex items-center gap-2 mb-4">
+        <button
+          type="button"
+          id="open-all"
+          class="text-xs font-semibold text-blue-accent hover:text-navy bg-surface border border-border rounded-lg px-3 py-2 transition-colors min-h-[36px]"
+        >
+          Buka Semua
+        </button>
+        <button
+          type="button"
+          id="close-all"
+          class="text-xs font-semibold text-text-secondary hover:text-navy bg-surface border border-border rounded-lg px-3 py-2 transition-colors min-h-[36px]"
+        >
+          Tutup Semua
+        </button>
+      </div>
+
+      <div id="category-list" class="space-y-3"></div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-12" role="status">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-bg-main flex items-center justify-center mb-3">
+          <i data-lucide="inbox" class="w-6 h-6 text-text-secondary/50" aria-hidden="true"></i>
+        </div>
+        <p class="text-sm font-medium text-text-secondary">Tidak ada kategori atau kegiatan yang cocok.</p>
+        <p class="text-xs text-text-secondary/60 mt-1">Coba kata kunci lain atau hapus pencarian.</p>
+      </div>
+    </main>
+
+    <!-- ===== INFORMATION ===== -->
+    <section class="bg-surface border-t border-border">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="mb-6 sm:mb-8">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-navy">Informasi dan Layanan</h2>
+          <p class="text-sm sm:text-base text-text-secondary mt-1.5">Akses cepat ke informasi pendukung kegiatan.</p>
+        </div>
+        <div id="info-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-navy text-white">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center">
+                <img src="assets/logo-bps.svg" alt="" />
+              </div>
+              <span id="footer-name" class="text-sm font-semibold">Badan Pusat Statistik Kota Pekalongan</span>
+            </div>
+            <p class="text-sm text-white/60 leading-relaxed">Portal Dokumentasi Kegiatan</p>
+            <p id="footer-address" class="text-sm text-white/60 mt-2">Jalan Singosari, Kota Pekalongan</p>
+          </div>
+          <div class="sm:text-right">
+            <p class="text-xs text-white/40 uppercase tracking-widest mb-2">Tautan Resmi</p>
+            <a
+              id="footer-website"
+              href="#"
+              class="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-orange-bps transition-colors min-h-[44px]"
+              style="display: none"
+            >
+              Situs Resmi BPS
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5" aria-hidden="true"></i>
+            </a>
+            <p class="text-xs text-white/40 mt-4">&copy; <span id="footer-year">2026</span> BPS Kota Pekalongan</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

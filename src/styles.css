@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #102A43;
+  --color-navy-dark: #0B1F33;
+  --color-blue-accent: #1D4ED8;
+  --color-orange-bps: #F58220;
+  --color-orange-soft: #FFF1E5;
+  --color-bg-main: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #172B3A;
+  --color-text-secondary: #627386;
+  --color-border: #E2E8F0;
+  --color-success: #16803D;
+  --color-focus: #2563EB;
+
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+/* Accordion panel transition */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms ease;
+}
+
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-panel {
+    transition: none;
+  }
+}
+
+/* Hero decorative dot pattern */
+.hero-dots {
+  background-image: radial-gradient(circle, var(--color-navy) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.04;
+}
