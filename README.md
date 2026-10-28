@@ -1,18 +1,19 @@
-# BPS Kota Pekalongan — Dokumentasi Kegiatan
+# BPS Kota Pekalongan — Dokumentasi Kegiatan (Neobrutalism Edition)
 
-Portal dokumentasi digital kegiatan BPS Kota Pekalongan. Dibangun dengan pendekatan visual modern, bersih, dan profesional menggunakan HTML5 semantik, Tailwind CSS v4, Vanilla JavaScript (ES6+), Vite, dan Lucide Icons.
+Portal dokumentasi digital kegiatan BPS Kota Pekalongan dengan pendekatan visual Neobrutalism.
 
 ## Teknologi
 
 - HTML5 semantik
-- Tailwind CSS v4
+- Tailwind CSS v4.3.3 (terverifikasi di npm)
 - Vanilla JavaScript ES6+
-- Vite
+- Vite 6
 - Lucide Icons
-- Plus Jakarta Sans (Google Fonts)
+- Space Grotesk (Google Fonts)
 
 ## Menjalankan Proyek
 
 ```bash
 npm install
 npm run dev
+```

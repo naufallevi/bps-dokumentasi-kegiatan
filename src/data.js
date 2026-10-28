@@ -11,7 +11,7 @@ const urlData = {
 export const siteData = {
   institution: {
     name: "BPS Kota Pekalongan",
-    fullName: "Badan Pusat Statistik Kota Pekalongan",
+    label: "Badan Pusat Statistik",
     address: "Jalan Singosari, Kota Pekalongan",
     websiteUrl: "https://pekalongankota.bps.go.id/id",
     mapUrl: "https://maps.app.goo.gl/kvs2njdwZxedm7ph7",
@@ -19,15 +19,17 @@ export const siteData = {
     logoImage: "/assets/logo-bps.svg",
   },
 
+  directoryYear: new Date().getFullYear(),
+
   categories: [
     {
       id: "reformasi-birokrasi",
+      number: "01",
       title: "Kegiatan Reformasi Birokrasi (RB/Zl)",
-      description: "Dokumentasi kegiatan reformasi birokrasi.",
-      icon: "folder",
-      link: {},
+      description: "Dokumentasi kegiatan reformasi birokrasi dan aktivitas internal terkait.",
+      accent: "orange",
       items: [
-        { id: "serabi-apel-pagi", title: "Serabi/Apel Pagi", url: urlData.serabi, source: "drive" },
+        { id: "serbagi-apel-pagi", title: "Serbagi/Apel Pagi", url: urlData.serabi, source: "drive" },
         { id: "say-hello", title: "Say Hello", url: urlData.sayHello, source: "drive" },
         { id: "santen", title: "Santen", url: urlData.santen, source: "drive" },
         { id: "martabak", title: "Martabak", url: urlData.martabak, source: "drive" },
@@ -36,16 +38,18 @@ export const siteData = {
     },
     {
       id: "rapat-dinas",
+      number: "02",
       title: "Kegiatan Rapat Dinas",
-      description: "Dokumentasi rapat dan koordinasi kedinasan.",
-      icon: "calendar",
+      description: "Arsip rapat, koordinasi, dan kegiatan kedinasan.",
+      accent: "blue",
       items: [{ id: "rapat-dinas", title: "Rapat Dinas", url: urlData.rapatDinas, source: "drive" }],
     },
     {
       id: "sensus-survei",
+      number: "03",
       title: "Kegiatan Sensus/Survei",
-      description: "Dokumentasi pelaksanaan sensus dan survei.",
-      icon: "chart-no-axes-column",
+      description: "Dokumentasi pelaksanaan kegiatan sensus dan survei statistik.",
+      accent: "yellow",
       items: [{ id: "sensus-survei", title: "Sensus/Survei", url: urlData.sensusSurvei, source: "drive" }],
     },
   ],
@@ -87,16 +91,6 @@ export function isValidUrl(url) {
   }
 }
 
-export function getActiveUrlCount(categories) {
-  let count = 0;
-  for (const cat of categories) {
-    for (const item of cat.items) {
-      if (isValidUrl(item.url)) count++;
-    }
-  }
-  return count;
-}
-
 export function getCategoryCount(categories) {
   return categories.length;
 }
@@ -105,8 +99,18 @@ export function getInformationCount(info) {
   return info.length;
 }
 
-export function getActiveInfoUrlCount(info) {
-  return info.filter((i) => isValidUrl(i.url)).length;
+export function getDocumentationCount(categories) {
+  return categories.reduce((sum, cat) => sum + cat.items.length, 0);
+}
+
+export function getActiveUrlCount(categories) {
+  let count = 0;
+  for (const cat of categories) {
+    for (const item of cat.items) {
+      if (isValidUrl(item.url)) count++;
+    }
+  }
+  return count;
 }
 
 export function normalizeString(str) {

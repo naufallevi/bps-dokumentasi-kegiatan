@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #102A43;
-  --color-navy-dark: #0B1F33;
-  --color-blue-accent: #1D4ED8;
-  --color-orange-bps: #F58220;
-  --color-orange-soft: #FFF1E5;
-  --color-bg-main: #F5F7FA;
-  --color-surface: #FFFFFF;
-  --color-text-primary: #172B3A;
-  --color-text-secondary: #627386;
-  --color-border: #E2E8F0;
-  --color-success: #16803D;
-  --color-focus: #2563EB;
+  --color-ink: #0a0a0a;
+  --color-navy: #1a1aff;
+  --color-navy-dark: #0d0d8f;
+  --color-orange: #ff6b00;
+  --color-orange-bright: #ff8c1a;
+  --color-paper: #fdf6e3;
+  --color-blue-soft: #5bc0ff;
+  --color-green-soft: #6FC276;
+  --color-blue-electric: #1a1aff;
+  --color-yellow: #ffd60a;
+  --color-yellow-bright: #ffe66d;
+  --color-pink: #ff4d8d;
+  --color-green: #00d97e;
+  --color-gray-muted: #d7dde4;
+  --color-text-muted: #3a3a3a;
+  --color-success: #00d97e;
+  --color-error: #ff4d4d;
 
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: "Archivo Black", "Space Grotesk", system-ui, sans-serif;
+
+  --shadow-hard: 8px 8px 0 #0a0a0a;
+  --shadow-hard-sm: 4px 4px 0 #0a0a0a;
+  --shadow-hard-lg: 12px 12px 0 #0a0a0a;
+  --shadow-hard-colored: 8px 8px 0 #0a0a0a;
 }
 
 @layer base {
@@ -22,34 +33,109 @@
     scroll-behavior: smooth;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-bg-main);
-    color: var(--color-text-primary);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle, #0a0a0a 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 4px solid var(--color-orange);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
   }
 }
 
-/* Accordion panel transition */
+/* ============ Neobrutalism Utilities ============ */
+@utility hard-shadow {
+  box-shadow: var(--shadow-hard);
+}
+
+@utility hard-shadow-sm {
+  box-shadow: var(--shadow-hard-sm);
+}
+
+@utility hard-shadow-lg {
+  box-shadow: var(--shadow-hard-lg);
+}
+
+@utility press-effect {
+  transition:
+    transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 120ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.press-effect:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.press-effect:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* ============ Decorative ============ */
+@utility tape {
+  position: relative;
+}
+
+.tape::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 80px;
+  height: 24px;
+  background: var(--color-yellow);
+  border: 2px solid var(--color-ink);
+  z-index: 10;
+}
+
+@utility text-stroke {
+  -webkit-text-stroke: 2px var(--color-ink);
+  paint-order: stroke fill;
+}
+
+@utility text-stroke-sm {
+  -webkit-text-stroke: 1.5px var(--color-ink);
+  paint-order: stroke fill;
+}
+
+@utility sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+/* ============ Accordion ============ */
 .accordion-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 250ms ease;
+  transition: grid-template-rows 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .accordion-panel[data-open="true"] {
@@ -60,15 +146,24 @@
   overflow: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .accordion-panel {
-    transition: none;
-  }
+/* ============ Marquee ============ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-/* Hero decorative dot pattern */
-.hero-dots {
-  background-image: radial-gradient(circle, var(--color-navy) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.04;
+.marquee-track {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* ============ Wiggle ============ */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.wiggle {
+  animation: wiggle 3s ease-in-out infinite;
 }
