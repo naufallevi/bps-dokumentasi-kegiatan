@@ -295,7 +295,7 @@ function renderCategories() {
     const accentBg = ACCENT_BG[cat.accent] || "bg-orange";
 
     const article = el("article", {
-      className: "bg-white border-[3px] border-ink hard-shadow rounded-xl overflow-hidden",
+      className: "bg-white border-[3px] border-ink hard-shadow rounded-xl press-effect overflow-hidden",
       id: `cat-${cat.id}`,
     });
 
@@ -307,7 +307,7 @@ function renderCategories() {
       {
         type: "button",
         className:
-          "w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 text-left cursor-pointer select-none press-effect bg-white",
+          "w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 text-left cursor-pointer select-none press-effect-no-shadow shadow-none bg-white",
         "aria-expanded": String(isOpen),
         "aria-controls": `panel-${cat.id}`,
       },
@@ -374,7 +374,7 @@ function renderCategories() {
               target: "_blank",
               rel: "noopener noreferrer",
               className:
-                "flex items-center gap-3 min-h-[54px] px-3 rounded-lg border-[3px] border-ink bg-white hard-shadow-sm press-effect group",
+                "flex items-center gap-3 min-h-[54px] px-3 rounded-lg border-[3px] border-ink bg-white hard-shadow-sm press-effect-sm group",
             },
             [
               el(
@@ -519,7 +519,7 @@ function renderInformation() {
                 target: "_blank",
                 rel: "noopener noreferrer",
                 className:
-                  "inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-ink text-white font-bold text-sm border-[3px] border-ink hard-shadow-sm press-effect uppercase tracking-wider",
+                  "inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-ink text-white font-bold text-sm border-[3px] border-ink hard-shadow-sm press-effect-sm uppercase tracking-wider",
               },
               ["BUKA LAYANAN", iconNode("arrow-up-right", 16)],
             )

@@ -89,6 +89,37 @@
   box-shadow: none;
 }
 
+@utility press-effect-no-shadow {
+  transition:
+    transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 120ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.press-effect-no-shadow:hover {
+  transform: translate(-3px, -3px);
+}
+
+.press-effect-no-shadow:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+@utility press-effect-sm {
+  transition:
+    transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 120ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.press-effect-sm:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard);
+}
+
+.press-effect-sm:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
 /* ============ Decorative ============ */
 @utility tape {
   position: relative;
