@@ -462,12 +462,12 @@ function updateSearchStatus(hasResults, totalResults) {
 
 // ==================== Information ====================
 function renderInformation() {
-  const grid = document.getElementById("info-grid");
+  const grid = document.getElementById("info-flex");
   if (!grid) return;
   grid.innerHTML = "";
 
-  const bgColors = ["bg-yellow", "bg-green-soft", "bg-pink"];
-  const iconBgs = ["bg-white", "bg-white", "bg-white"];
+  const bgColors = ["bg-yellow", "bg-green-soft", "bg-pink", "bg-orange"];
+  const iconBgs = ["bg-white", "bg-white", "bg-white", "bg-white"];
 
   for (let i = 0; i < siteData.information.length; i++) {
     const info = siteData.information[i];
@@ -478,7 +478,7 @@ function renderInformation() {
     const card = el(
       "div",
       {
-        className: `relative ${bgClass} border-[3px] border-ink hard-shadow rounded-xl p-6 flex flex-col items-center text-center transition-transform hover:-translate-y-1`,
+        className: `relative ${bgClass} border-[3px] border-ink hard-shadow rounded-xl p-6 flex flex-col items-center text-center transition-transform hover:-translate-y-1 w-full md:flex-[0_1_calc((100%-3rem)/3)]`,
       },
       [
         el(
