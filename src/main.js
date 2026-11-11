@@ -592,7 +592,6 @@ function initExpandCollapseAll() {
   });
 }
 
-
 // ==================== Cara Teknik Dokumentasi Page ====================
 function renderDocumentationGuide() {
   const content = `
@@ -627,10 +626,31 @@ function renderDocumentationGuide() {
         <span class="sticker bg-yellow text-ink mb-4">PANDUAN MAGANG</span>
         <h2 class="text-3xl sm:text-5xl font-display leading-tight text-ink">CARA & TEKNIK DOKUMENTASI</h2>
         <p class="text-base sm:text-lg font-bold text-ink/80 mt-4">Panduan dokumentasi kegiatan BPS Kota Pekalongan</p>
-        <img src="/assets/cara-teknik-dokumentasi.webp" alt="Infografis cara dan teknik dokumentasi" class="w-full max-h-[420px] object-contain bg-white border-[3px] border-ink rounded-lg mt-7 p-2">
+        <img src="/assets/cara-teknik-dokumentasi.webp" alt="Infografis cara dan teknik dokumentasi" class="w-full max-h-[150px] object-contain bg-white border-[3px] border-ink rounded-lg mt-7 p-2">
       </section>
 
       <section class="bg-white border-[3px] border-ink hard-shadow rounded-xl p-6 sm:p-9">
+      
+        <figure class="mb-8">
+          <button
+            type="button"
+            id="guide-image-preview"
+            class="block w-full cursor-zoom-in group"
+            aria-label="Perbesar infografis dokumentasi"
+          >
+            <img
+              src="/assets/panduan-dokumentasi.jpg"
+              alt="Tata Cara Dokumentasi Acara BPS Kota Pekalongan"
+              class="mx-auto w-full h-auto rounded-xl border-[3px] border-ink transition-transform duration-200 group-hover:scale-[1.01] md:w-[35%]"
+              loading="lazy"
+            />
+          </button>
+
+          <figcaption class="text-center text-xs sm:text-sm text-text-muted font-medium mt-3">
+            🔍 Klik gambar untuk memperbesar dan mengunduh
+          </figcaption>
+        </figure>
+
         <p class="text-base sm:text-lg leading-relaxed font-medium mb-6">
           Selamat pagi, teman-teman Magang BPS Kota Pekalongan. 😊
         </p>
@@ -716,7 +736,75 @@ function renderDocumentationGuide() {
   document.body.innerHTML = content;
   document.title = "Cara & Teknik Dokumentasi — BPS Kota Pekalongan";
   const description = document.querySelector('meta[name="description"]');
-  if (description) description.setAttribute("content", "Panduan dokumentasi kegiatan untuk Magang BPS Kota Pekalongan.");
+  if (description)
+    description.setAttribute("content", "Panduan dokumentasi kegiatan untuk Magang BPS Kota Pekalongan.");
+
+  const previewButton = document.getElementById("guide-image-preview");
+
+  previewButton?.addEventListener("click", () => {
+    const imageUrl = "/assets/panduan-dokumentasi.jpg";
+
+    const lightbox = document.createElement("div");
+
+    lightbox.className = "fixed inset-0 z-[100] bg-black/90 p-4 sm:p-8 flex flex-col items-center justify-center";
+
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Pratinjau infografis");
+
+    lightbox.innerHTML = `
+    <div class="w-full max-w-6xl flex items-center justify-between gap-3 mb-4">
+      <p class="text-white font-bold text-sm sm:text-base">
+        Tata Cara Dokumentasi
+      </p>
+
+      <button
+        type="button"
+        id="lightbox-close"
+        class="bg-white text-ink rounded-lg px-4 py-2 font-bold"
+      >
+        ✕ TUTUP
+      </button>
+    </div>
+
+    <div class="flex-1 min-h-0 w-full flex items-center justify-center overflow-auto">
+      <img
+        src="${imageUrl}"
+        alt="Infografis Tata Cara Dokumentasi"
+        class="max-w-full max-h-full object-contain rounded-lg"
+      />
+    </div>
+
+    <a
+      href="${imageUrl}"
+      download="Tata-Cara-Dokumentasi-BPS-Kota-Pekalongan.jpg"
+      class="mt-5 bg-yellow text-ink border-[3px] border-ink rounded-lg px-6 py-3 font-bold"
+    >
+      ⬇ DOWNLOAD GAMBAR
+    </a>
+  `;
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") closeLightbox();
+    };
+
+    const closeLightbox = () => {
+      lightbox.remove();
+      document.removeEventListener("keydown", handleEscape);
+    };
+
+    lightbox.querySelector("#lightbox-close").addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", handleEscape);
+
+    document.body.appendChild(lightbox);
+    lightbox.querySelector("#lightbox-close").focus();
+  });
+
   refreshIcons();
 }
 
