@@ -22,6 +22,7 @@ import {
   Phone,
   Building2,
   ArrowUpRight,
+  ArrowLeft,
   Inbox,
   HardDrive,
   Play,
@@ -48,6 +49,7 @@ const ALL_ICONS = {
   Phone,
   Building2,
   ArrowUpRight,
+  ArrowLeft,
   Inbox,
   HardDrive,
   Play,
@@ -471,7 +473,8 @@ function renderInformation() {
 
   for (let i = 0; i < siteData.information.length; i++) {
     const info = siteData.information[i];
-    const hasUrl = isValidUrl(info.url);
+    const isInternalPage = info.url === "/cara-teknik-dokumentasi";
+    const hasUrl = isValidUrl(info.url) || isInternalPage;
     const bgClass = bgColors[i % bgColors.length];
     const iconBg = iconBgs[i % iconBgs.length];
 
@@ -516,12 +519,11 @@ function renderInformation() {
               "a",
               {
                 href: info.url,
-                target: "_blank",
-                rel: "noopener noreferrer",
+                ...(isInternalPage ? {} : { target: "_blank", rel: "noopener noreferrer" }),
                 className:
                   "inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-ink text-white font-bold text-sm border-[3px] border-ink hard-shadow-sm press-effect-sm uppercase tracking-wider",
               },
-              ["BUKA LAYANAN", iconNode("arrow-up-right", 16)],
+              [isInternalPage ? "BACA PANDUAN" : "BUKA LAYANAN", iconNode("arrow-up-right", 16)],
             )
           : el(
               "span",
@@ -590,6 +592,134 @@ function initExpandCollapseAll() {
   });
 }
 
+
+// ==================== Cara Teknik Dokumentasi Page ====================
+function renderDocumentationGuide() {
+  const content = `
+    <div class="bg-ink text-yellow border-b-[3px] border-ink overflow-hidden py-1.5">
+      <div class="marquee-track gap-8 text-xs font-bold uppercase tracking-widest">
+        <span>★ PORTAL DOKUMENTASI DIGITAL</span>
+        <span>★ BPS KOTA PEKALONGAN</span>
+        <span>★ PANDUAN DOKUMENTASI KEGIATAN</span>
+        <span>★ PORTAL DOKUMENTASI DIGITAL</span>
+        <span>★ BPS KOTA PEKALONGAN</span>
+      </div>
+    </div>
+
+    <header class="bg-navy border-b-[3px] border-ink">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex items-center gap-4">
+        <img src="/assets/logo-bps.svg" alt="Logo BPS" class="w-14 h-14 object-contain bg-white rounded-lg border-[3px] border-ink p-1">
+        <div>
+          <p class="text-xs font-bold text-yellow uppercase tracking-widest mb-1">Badan Pusat Statistik</p>
+          <h1 class="text-xl sm:text-2xl font-display text-white">BPS Kota Pekalongan</h1>
+          <p class="text-sm text-white/80 mt-1">Pusat Dokumentasi dan Informasi Kegiatan</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+      <a href="/" class="inline-flex items-center gap-2 bg-white border-[3px] border-ink rounded-lg px-4 py-2.5 font-bold text-sm hard-shadow-sm press-effect mb-8">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        KEMBALI KE BERANDA
+      </a>
+
+      <section class="bg-orange border-[3px] border-ink hard-shadow rounded-xl p-6 sm:p-10 mb-10">
+        <span class="sticker bg-yellow text-ink mb-4">PANDUAN MAGANG</span>
+        <h2 class="text-3xl sm:text-5xl font-display leading-tight text-ink">CARA & TEKNIK DOKUMENTASI</h2>
+        <p class="text-base sm:text-lg font-bold text-ink/80 mt-4">Panduan dokumentasi kegiatan BPS Kota Pekalongan</p>
+        <img src="/assets/cara-teknik-dokumentasi.webp" alt="Infografis cara dan teknik dokumentasi" class="w-full max-h-[420px] object-contain bg-white border-[3px] border-ink rounded-lg mt-7 p-2">
+      </section>
+
+      <section class="bg-white border-[3px] border-ink hard-shadow rounded-xl p-6 sm:p-9">
+        <p class="text-base sm:text-lg leading-relaxed font-medium mb-6">
+          Selamat pagi, teman-teman Magang BPS Kota Pekalongan. 😊
+        </p>
+        <p class="leading-relaxed text-text-muted mb-7">
+          Untuk mendukung publikasi dan arsip kegiatan kantor, mohon setiap kegiatan didokumentasikan dengan lengkap dan rapi sesuai panduan pada infografis terlampir.
+        </p>
+
+        <h3 class="text-xl sm:text-2xl font-display mb-4">HAL YANG PERLU DIPERHATIKAN SAAT DOKUMENTASI ACARA</h3>
+        <div class="space-y-4 mb-8">
+          <article class="bg-yellow/40 border-[2.5px] border-ink rounded-lg p-4 sm:p-5">
+            <div class="flex gap-3 items-start">
+              <span class="text-2xl">📸</span>
+              <div>
+                <h4 class="font-bold mb-2">Ambil foto dari beberapa sudut</h4>
+                <p class="text-sm text-text-muted">Ambil dokumentasi dari bagian depan, belakang, sisi kanan, dan sisi kiri agar suasana kegiatan tergambarkan secara menyeluruh.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="bg-blue-soft/30 border-[2.5px] border-ink rounded-lg p-4 sm:p-5">
+            <div class="flex gap-3 items-start">
+              <span class="text-2xl">📸</span>
+              <div class="flex-1">
+                <h4 class="font-bold mb-3">Dokumentasikan seluruh rangkaian kegiatan</h4>
+                <ul class="list-disc pl-5 space-y-2 text-sm text-text-muted">
+                  <li>Pembukaan acara.</li>
+                  <li>Koordinator/MC menyampaikan prakata.</li>
+                  <li>Arahan dari pimpinan.</li>
+                  <li>Pemateri saat menyampaikan materi.</li>
+                  <li>Peserta selama mengikuti kegiatan.</li>
+                  <li>Sesi diskusi atau tanya jawab.</li>
+                  <li>Penyerahan cinderamata/sertifikat (jika ada).</li>
+                  <li>Foto bersama di akhir kegiatan.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="bg-green-soft/30 border-[2.5px] border-ink rounded-lg p-4 sm:p-5">
+            <div class="flex gap-3 items-start">
+              <span class="text-2xl">📸</span>
+              <div class="flex-1">
+                <h4 class="font-bold mb-3">Ambil juga foto pendukung</h4>
+                <ul class="list-disc pl-5 space-y-2 text-sm text-text-muted">
+                  <li>Banner/backdrop kegiatan.</li>
+                  <li>Peralatan atau perlengkapan kegiatan.</li>
+                  <li>Close up peserta yang sedang aktif berdiskusi atau menyimak materi.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-display mb-4">PASTIKAN HASIL FOTO</h3>
+        <ul class="space-y-3 mb-8">
+          <li class="flex gap-3 items-start"><span class="text-xl">✅</span><span class="font-medium">Tidak blur dan pencahayaan cukup.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-xl">✅</span><span class="font-medium">Objek utama terlihat jelas.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-xl">✅</span><span class="font-medium">Komposisi rapi dan tidak terhalang.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-xl">✅</span><span class="font-medium">Menampilkan suasana kegiatan secara keseluruhan.</span></li>
+        </ul>
+
+        <div class="bg-paper border-[3px] border-ink rounded-lg p-5 sm:p-6">
+          <h3 class="text-lg sm:text-xl font-display mb-3">SETELAH KEGIATAN SELESAI</h3>
+          <p class="text-sm sm:text-base leading-relaxed text-text-muted">
+            Setelah kegiatan selesai, mohon segera pilih foto-foto terbaik dan unggah ke folder dokumentasi yang telah disediakan dengan nama file yang rapi agar memudahkan proses publikasi dan pengarsipan.
+          </p>
+        </div>
+
+        <p class="leading-relaxed font-medium mt-8">
+          Terima kasih atas kerja samanya. Semoga dokumentasi yang dihasilkan semakin baik, lengkap, dan bermanfaat sebagai arsip maupun bahan publikasi BPS Kota Pekalongan. 🙏
+        </p>
+      </section>
+    </main>
+
+    <footer class="bg-navy-dark text-white border-t-[3px] border-ink">
+      <div class="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+        <p class="font-display">BPS KOTA PEKALONGAN</p>
+        <p class="text-xs text-white/60 mt-2">PORTAL DOKUMENTASI DIGITAL • DATA • DOKUMENTASI • INFORMASI</p>
+      </div>
+    </footer>
+  `;
+
+  document.body.innerHTML = content;
+  document.title = "Cara & Teknik Dokumentasi — BPS Kota Pekalongan";
+  const description = document.querySelector('meta[name="description"]');
+  if (description) description.setAttribute("content", "Panduan dokumentasi kegiatan untuk Magang BPS Kota Pekalongan.");
+  refreshIcons();
+}
+
 // ==================== Footer ====================
 function renderFooter() {
   const yearEl = document.getElementById("footer-year");
@@ -616,6 +746,12 @@ function renderFooter() {
 }
 
 function init() {
+  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  if (currentPath === "/cara-teknik-dokumentasi") {
+    renderDocumentationGuide();
+    return;
+  }
+
   renderHeader();
   renderSummary();
   renderCategories();

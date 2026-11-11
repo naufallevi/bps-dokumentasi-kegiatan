@@ -198,3 +198,18 @@
 .wiggle {
   animation: wiggle 3s ease-in-out infinite;
 }
+
+/* ============ Documentation Guide Page ============ */
+.guide-content li::marker {
+  color: var(--color-orange);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

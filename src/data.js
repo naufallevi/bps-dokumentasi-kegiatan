@@ -81,7 +81,7 @@ export const siteData = {
       title: "Cara Teknik Dokumentasi",
       description: "Informasi cara teknik dokumentasi kegiatan.",
       image: "/assets/cara-teknik-dokumentasi.webp",
-      url: "",
+      url: "/cara-teknik-dokumentasi",
     },
   ],
 };
